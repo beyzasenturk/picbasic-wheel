@@ -1,0 +1,99 @@
+include "LCD_tanimlamalari.pbp"
+include "terminaltanimlamalari.pbp"
+trisb=0
+portb=0
+trisd=0
+portd=0
+trisc=%11000000
+bekle con 10
+
+i var byte 
+s var byte
+k var byte
+j var byte
+x var byte[4]
+y var byte[4]
+x[0]=51
+x[1]=102
+x[2]=204
+x[3]=153
+y[0]=147
+y[1]=198
+y[2]=108
+y[3]=57
+
+label:
+
+hserin[k]
+select case k 
+case "w"
+gosub ileri
+case "s" 
+gosub geri
+case "a" 
+gosub sol
+case "d"
+gosub sag
+end select
+
+
+
+goto label
+
+
+sag
+if i<=3  then 
+   portb= x[i] 
+   i=i+1
+   pause bekle       
+else 
+i=0 
+endif
+gosub label
+
+sol:
+if i>0  then 
+   i=i-1
+   portb= x[i] 
+   pause bekle       
+else 
+i=4 
+endif
+gosub label
+
+    
+
+geri:
+if s<=3  then 
+   portb= y[s] 
+   s=s+1
+   pause bekle       
+else 
+s=0 
+endif
+gosub label
+
+
+ileri:
+if s>0  then 
+   s=s-1
+   portb= y[s] 
+   pause bekle       
+else 
+s=4 
+endif
+gosub label
+
+
+
+
+
+
+
+
+
+
+
+
+
+
